@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('t_link', function (Blueprint $table) {
-            //
+        Schema::create('t_kategori', function (Blueprint $table) {
+            $table->integer('id_kategori')->autoIncrement();
+            $table->string('nik', 50)->nullable();
+            $table->string('nama_kategori', 100);
+            $table->string('icon', 100)->nullable();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('t_link', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('t_kategori');
     }
 };

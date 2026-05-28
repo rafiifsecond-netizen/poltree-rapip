@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('t_kategori', function (Blueprint $table) {
-            $table->integer('nik_pengguna')->nullable()->change();
+        Schema::create('t_tag', function (Blueprint $table) {
+            $table->id('id_tag'); // Menggunakan BIGINT UNSIGNED
+            $table->string('nama_tag', 255)->unique();
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('t_kategori', function (Blueprint $table) {
-            $table->integer('nik_pengguna')->nullable(false)->change();
-        });
+        Schema::dropIfExists('t_tag');
     }
 };
