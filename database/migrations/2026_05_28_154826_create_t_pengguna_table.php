@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('t_kategori', function (Blueprint $table) {
-            $table->string('nik', 50)->nullable()->after('id_kategori');
+        Schema::create('t_pengguna', function (Blueprint $table) {
+            $table->integer('nik')->primary();
+            $table->string('nama_user', 150);
+            $table->string('password', 255);
+            $table->string('email', 150)->unique();
+            $table->string('jabatan', 50);
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('t_kategori', function (Blueprint $table) {
-            $table->dropColumn('nik');
-        });
+        Schema::dropIfExists('t_pengguna');
     }
 };

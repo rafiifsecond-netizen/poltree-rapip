@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('password_reset_codes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('t_admin', function (Blueprint $table) {
+            $table->integer('nik_admin')->primary(); // Bukan Auto Increment
+            $table->string('nama', 150);
+            $table->string('email', 255)->nullable();
+            $table->string('password', 255);
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('password_reset_codes');
+        Schema::dropIfExists('t_admin');
     }
 };
